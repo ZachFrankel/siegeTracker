@@ -15,6 +15,8 @@ async def get_ranked_data(user_id: str):
 
     await player.load_ranked_v2()
     ranked_profile = player.ranked_profile
+
+    await auth.close()
     
     return {
         'user_id': user_id,
