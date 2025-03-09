@@ -13,6 +13,7 @@ async def get_ranked_data(user_id: str):
     auth = Auth(os.getenv('UBI_AUTH_EMAIL'), os.getenv('UBI_AUTH_PASSWORD'))
     player = await auth.get_player(uid=user_id)
 
+    await player.load_ranked_v2()
     ranked_profile = player.ranked_profile
     
     return {

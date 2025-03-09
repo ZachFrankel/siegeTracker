@@ -17,9 +17,9 @@ client = discord.Client(intents=intents)
 player_data = {}
 
 TRACKED_USERS = [
-    '5282a1e6-cae1-414d-82f8-ace0a8e24841',
-
+    '4514f17d-c096-4e38-ae88-67693eb7b182',
 ]
+
 INTERVAL = 300
 
 async def handle_change(user_id, prev_data, current_data, change):
