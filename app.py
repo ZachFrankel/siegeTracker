@@ -52,7 +52,7 @@ async def handle_change(user_id, prev_data, current_data, change):
 
     embed.add_field(
         name="New MMR", 
-        value=f"{current_data['rank_points']}", 
+        value=f"{current_data['rank_points']} ({change:+})", 
         inline=False
     )
 
