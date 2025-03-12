@@ -30,7 +30,7 @@ TRACKED_USERS = [
 
 INTERVAL = 300
 
-async def handle_change(user_id, prev_data, current_data, change):
+async def handle_change(prev_data, current_data, change):
     kills = current_data['kills'] - prev_data['kills']
     deaths = current_data['deaths'] - prev_data['deaths']
     

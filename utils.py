@@ -19,15 +19,10 @@ async def get_ranked_data(user_id: str):
     await auth.close()
     
     return {
-        'user_id': user_id,
         'username': player.name,
         'pfp': player.profile_pic_url_256,
         'rank': ranked_profile.rank,
         'rank_points': ranked_profile.rank_points,
-        'max_rank': ranked_profile.max_rank,
-        'max_rank_points': ranked_profile.max_rank_points,
-        'wins': ranked_profile.wins,
-        'losses': ranked_profile.losses,
         'kills': ranked_profile.kills,
         'deaths': ranked_profile.deaths
     }
