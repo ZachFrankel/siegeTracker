@@ -31,9 +31,6 @@ TRACKED_USERS = [
 INTERVAL = 300
 
 async def handle_change(user_id, prev_data, current_data, change):
-    wins_diff = current_data['wins'] - prev_data['wins']
-    losses_diff = current_data['losses'] - prev_data['losses']
-
     kills = current_data['kills'] - prev_data['kills']
     deaths = current_data['deaths'] - prev_data['deaths']
     
@@ -64,7 +61,6 @@ async def background_tracker():
     
     while not client.is_closed():
         if TRACKED_USERS:
-            logger.info(f'Checking rank changes for {len(TRACKED_USERS)} users')
             player_data = await track_uids(TRACKED_USERS, player_data, handle_change)
         
         await asyncio.sleep(INTERVAL)

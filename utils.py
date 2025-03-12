@@ -43,9 +43,6 @@ async def track_uids(tracked_users, player_data, callback=None):
                 if current_data['rank_points'] != prev_data['rank_points']:
                     change = current_data['rank_points'] - prev_data['rank_points']
                     
-                    logger.info(f'User {user_id} rank points changed: {change:+} '
-                               f'({prev_data['rank_points']} → {current_data['rank_points']})')
-                    
                     if callback:
                         await callback(user_id, prev_data, current_data, change)
             
