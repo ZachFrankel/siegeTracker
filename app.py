@@ -37,7 +37,7 @@ async def handle_change(user_id, prev_data, current_data, change):
     kills = current_data['kills'] - prev_data['kills']
     deaths = current_data['deaths'] - prev_data['deaths']
     
-    match_result = "Win" if wins_diff > 0 else "Loss" if losses_diff > 0 else "Unknown"
+    match_result = "Win" if change > 0 else "Loss" if change < 0 else "Unknown"
     
     kd = round(kills/deaths, 1) if deaths > 0 else kills
     
