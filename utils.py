@@ -20,6 +20,8 @@ async def get_ranked_data(user_id: str):
     
     return {
         'user_id': user_id,
+        'username': player.name,
+        'pfp': player.profile_pic_url_256,
         'rank': ranked_profile.rank,
         'rank_points': ranked_profile.rank_points,
         'max_rank': ranked_profile.max_rank,

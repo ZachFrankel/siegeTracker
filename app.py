@@ -34,23 +34,44 @@ async def handle_change(user_id, prev_data, current_data, change):
     kills = current_data['kills'] - prev_data['kills']
     deaths = current_data['deaths'] - prev_data['deaths']
     
-    match_result = "Win" if change > 0 else "Loss" if change < 0 else "Unknown"
+    # match_result = "Win" if change > 0 else "Loss" if change < 0 else "Unknown"
     
     kd = round(kills/deaths, 1) if deaths > 0 else kills
+
+    embed = discord.Embed(
+        title=f"{current_data['username']}"
+    )
     
-    message = (
-        f"**R6 Siege Rank Update for Player {user_id}**\n"
-        f"Match Result: **{match_result}**\n"
-        f"Rank Points: {prev_data['rank_points']} → {current_data['rank_points']} ({change:+})\n"
-        f"K/D: **{kills} - {deaths} ({kd})**\n"
-        f"Current Rank: {current_data['rank']}\n"
+    embed.set_thumbnail(url=current_data['pfp'])
+    
+    embed.add_field(
+        name="Old MMR", 
+        value=f"{prev_data['rank_points']}", 
+        inline=False
+    )
+
+    embed.add_field(
+        name="New MMR", 
+        value=f"{current_data['rank_points']}", 
+        inline=False
+    )
+
+    embed.add_field(
+        name="Rank", 
+        value=f"{current_data['rank']}", 
+        inline=False
+    )
+    
+    embed.add_field(
+        name="KD", 
+        value=f"{kills} - {deaths} ({kd})", 
+        inline=False
     )
     
     for discord_id in DISCORD_USERS:
         try:
             user = await client.fetch_user(int(discord_id))
-            await user.send(message)
-            logger.info(f"Sent rank update DM to Discord user {discord_id}")
+            await user.send(embed=embed)
         except Exception as e:
             logger.error(f"Failed to send DM to Discord user {discord_id}: {str(e)}")
 
