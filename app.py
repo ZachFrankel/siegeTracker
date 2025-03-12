@@ -33,13 +33,19 @@ INTERVAL = 300
 async def handle_change(user_id, prev_data, current_data, change):
     wins_diff = current_data['wins'] - prev_data['wins']
     losses_diff = current_data['losses'] - prev_data['losses']
+
+    kills = current_data['kills'] - prev_data['kills']
+    deaths = current_data['deaths'] - prev_data['deaths']
     
     match_result = "Win" if wins_diff > 0 else "Loss" if losses_diff > 0 else "Unknown"
+    
+    kd = round(kills/deaths, 1) if deaths > 0 else kills
     
     message = (
         f"**R6 Siege Rank Update for Player {user_id}**\n"
         f"Match Result: **{match_result}**\n"
         f"Rank Points: {prev_data['rank_points']} → {current_data['rank_points']} ({change:+})\n"
+        f"K/D: **{kills} - {deaths} ({kd})**\n"
         f"Current Rank: {current_data['rank']}\n"
     )
     

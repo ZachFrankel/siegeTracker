@@ -25,7 +25,9 @@ async def get_ranked_data(user_id: str):
         'max_rank': ranked_profile.max_rank,
         'max_rank_points': ranked_profile.max_rank_points,
         'wins': ranked_profile.wins,
-        'losses': ranked_profile.losses
+        'losses': ranked_profile.losses,
+        'kills': ranked_profile.kills,
+        'deaths': ranked_profile.deaths
     }
 
 async def track_uids(tracked_users, player_data, callback=None):
