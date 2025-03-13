@@ -41,7 +41,7 @@ async def track_uids(tracked_users, player_data, callback=None):
                     change = current_data['rank_points'] - prev_data['rank_points']
                     
                     if callback:
-                        await callback(user_id, prev_data, current_data, change)
+                        await callback(prev_data, current_data, change)
             
             updated_data[user_id] = current_data
             
