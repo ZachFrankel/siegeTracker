@@ -67,6 +67,12 @@ async def handle_change(prev_data, current_data, change):
         value=f"{kills} - {deaths} ({kd})", 
         inline=False
     )
+
+    embed.add_field(
+        name="Overall KD",
+        value=f"{round(current_data['kills']/current_data['deaths'], 1)}",
+        inline=False
+    )
     
     for discord_id in DISCORD_USERS:
         try:
